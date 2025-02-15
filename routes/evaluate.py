@@ -34,7 +34,7 @@ async def evaluate_gemini(items: List[EvaluationRequest]):
 
 
 @router.post("/evaluate/gpt")
-async def evaluate_gemini(items: List[EvaluationRequest]):
+async def evaluate_gpt(items: List[EvaluationRequest]):
     return {"results": [evaluate_with_gpt(item) for item in items]}
 
 @router.post("/extract/")
