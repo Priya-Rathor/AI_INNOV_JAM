@@ -1,0 +1,48 @@
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment
+env/
+venv/
+.env
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Ignore IDE/Editor files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temp files
+*.log
+logs/
+*.sqlite3
+*.db
+
+# Ignore dependency files
+requirements.txt
+poetry.lock
+Pipfile
+Pipfile.lock
+
+# Ignore cache and build directories
+build/
+dist/
+*.egg-info/
+
+# Ignore Uvicorn reload files
+*.reload
+
+# Ignore dotenv environment files
+.env
+.env.local
+.env.production
+.env.test
