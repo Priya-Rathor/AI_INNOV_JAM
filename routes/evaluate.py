@@ -17,7 +17,7 @@ class EvaluationRequest(BaseModel):
     suggested_answer: str
     student_answer: str
     comparison_count: str
-    marks: float
+    marks: int
     temperature: float
     model: str
     provider: str
