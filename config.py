@@ -18,7 +18,7 @@ class Config:
     # Server Configuration
     HOST = "0.0.0.0"
     PORT = 7100
-     # Set to False in production
+    
 
 # Initialize a global config instance
 config = Config()
