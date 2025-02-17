@@ -29,4 +29,4 @@ async def hello():
 #                  Run FastAPI Server
 # ----------------------------------------------------------------
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=config.PORT, debug=config.DEBUG)
+    uvicorn.run(app, host="127.0.0.1", port=config.PORT, reload=True)
