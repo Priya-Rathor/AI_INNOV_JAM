@@ -83,15 +83,4 @@ def get_extraction_prompt(content: str):
         """
 
 
-[
-{
-    "suggested_answer": "Return on Investment (ROI): Measures the profitability of the affiliate marketing campaigns, calculated by comparing the revenue generated from affiliate sales to the cost of running the affiliate program. Conversion Rate: The percentage of users who take a desired action (e.g., make a purchase) after clicking on an affiliate link, indicating the effectiveness of affiliate traffic in driving sales. Average Order Value (AOV): The average amount spent by customers who purchase through affiliate links, helping to assess the value affiliates bring to each transaction. Cost per Acquisition (CPA): The total cost associated with acquiring a new customer through affiliate marketing efforts, vital for evaluating the cost-effectiveness of the affiliate program. Customer Lifetime Value (CLTV): Represents the total revenue a business can expect from a single customer account throughout their relationship, helping to understand the long-term value of acquiring customers via affiliates. Affiliate Share of Voice (SoV): Analyzes the visibility and influence of an organization's affiliates compared to competitors within the same niche or industry, highlighting the market positioning.",
-    "question": "Identify and explain 2 performance metrics as the criteria to review affiliate marketing from an organization’s point of view.",
-    "comparison_count": 2,
-    "temperature": 1.54,
-    "student_answer": "hhhhhhh",
-    "marks": 10,
-    "provider": "gemini",
-    "model": "gemini-pro"
-}
-]
+
