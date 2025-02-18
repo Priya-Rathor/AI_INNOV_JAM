@@ -4,10 +4,16 @@ from routes.evaluate import router
 from config import config
 import uvicorn
 
+
+
+
 # ----------------------------------------------------------------
 #               FastAPI App Initialization
 # ----------------------------------------------------------------
 app = FastAPI()
+
+
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -18,12 +24,23 @@ app.add_middleware(
 )
 
 # Include the router
-app.include_router(router)  # ✅ Include routes from router.py
+app.include_router(router) 
 
-# Health check endpoint
+
+
+
+#-------------------------------------------------------------------------
+#                          Health check endpoint
+#-------------------------------------------------------------------------
+
+
 @app.get("/hello")
 async def hello():
     return {"message": "Hello, API is running!"}
+
+
+
+
 
 # ----------------------------------------------------------------
 #                  Run FastAPI Server

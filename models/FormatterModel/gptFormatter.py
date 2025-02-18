@@ -1,7 +1,7 @@
 import re
 import json
 import openai
-from models import gpt_client
+from models.EvalModels import gpt_client
 from utils.promptFormatter import get_extraction_prompt  # ✅ Importing the unchanged prompt
 
 DEFAULT_GPT_MODEL = "gpt-4o"  # ✅ Default GPT model

@@ -1,5 +1,5 @@
 import re
-from . import gemini_client
+from .import gemini_client
 from utils.promptsEval import generate_prompt
 
 DEFAULT_GEMINI_MODEL = "gemini-1.5-pro"

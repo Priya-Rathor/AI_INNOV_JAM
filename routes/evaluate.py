@@ -1,14 +1,15 @@
 from fastapi import APIRouter, Form,HTTPException
 from pydantic import BaseModel
 from typing import List
-from models.groqEval import evaluate_with_groq
-from models.geminiEval import evaluate_with_gemini
-from models.gptEval import evaluate_with_gpt
+from models.EvalModels.groqEval import evaluate_with_groq
+from models.EvalModels.geminiEval import evaluate_with_gemini
+from models.EvalModels.gptEval import evaluate_with_gpt
 from models.CheckModels.gpt import check_gpt
 from fastapi.responses import JSONResponse
-from models.gptFormatter import extract_questions_answers_with_gpt
+from models.FormatterModel.gptFormatter import extract_questions_answers_with_gpt
 from models.CheckModels.gemini import check_gemini
 from models.CheckModels.groq import check_groq
+from models.FormatterModel.gemini import extract_questions_answers_with_gemini
 
 
 
@@ -129,4 +130,19 @@ async def extract_data_from_text(content: str = Form(...)):
         return JSONResponse(content=extracted_data, status_code=200)
     except Exception as e:
         return {"error": f"Error processing request: {str(e)}"}
+    
 
+
+
+
+@router.post("/extract/gemini")
+async def extract_data_from_text_gemini(content:str = Form(...)):
+    """API endpoint to process the text and extract structured data."""
+    print(f"Received request:Content length ={len(content)} characters")
+
+    extrated_data = extract_questions_answers_with_gemini(content)
+    
+    try:
+        return JSONResponse(content=extrated_data,status_code=200)
+    except Exception as e:
+        return {"error":f"Error processing request:{str(e)}"}
