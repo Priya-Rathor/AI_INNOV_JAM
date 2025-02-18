@@ -22,8 +22,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Include the router
+#----------------------------------------------------------------------------
+#                          Include the router
+#----------------------------------------------------------------------------
 app.include_router(router) 
 
 
@@ -32,8 +33,6 @@ app.include_router(router)
 #-------------------------------------------------------------------------
 #                          Health check endpoint
 #-------------------------------------------------------------------------
-
-
 @app.get("/hello")
 async def hello():
     return {"message": "Hello, API is running!"}
@@ -46,4 +45,4 @@ async def hello():
 #                  Run FastAPI Server
 # ----------------------------------------------------------------
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=config.PORT)
+    uvicorn.run(app, host="127.0.0.1", port=config.PORT)

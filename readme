@@ -2,6 +2,7 @@
 for env start :  ./env/scripts/activate   
 
 run server LAN  :  uvicorn main:app --host 0.0.0.0 --port 7100 --reload
-run for local :  uvicorn main:app --reload
+run for local :  uvicorn main:app --reload --host 127.0.0.1 --port 7100
+
 
 
