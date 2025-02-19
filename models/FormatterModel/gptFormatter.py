@@ -2,15 +2,15 @@ import re
 import json
 import openai
 from models.EvalModels import gpt_client
-from utils.promptFormatter import get_extraction_prompt  # ✅ Importing the unchanged prompt
+from utils.promptFormatter import get_extraction_prompt  
 
-DEFAULT_GPT_MODEL = "gpt-4o"  # ✅ Default GPT model
+DEFAULT_GPT_MODEL = "gpt-4o"  
 
 def extract_questions_answers_with_gpt(content: str):
     """Extracts questions and answers from content using GPT-4o."""
     print("Started extracting questions and answers...")
 
-    # ✅ Get the prompt from prompt.py without modifying it
+    
     prompt = get_extraction_prompt(content)
 
     try:
