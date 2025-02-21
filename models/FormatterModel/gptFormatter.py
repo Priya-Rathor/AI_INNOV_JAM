@@ -20,7 +20,7 @@ def extract_questions_answers_with_gpt(content: str):
                 {"role": "system", "content": "You are a helpful assistant that extracts structured data from text."},
                 {"role": "user", "content": prompt},
             ],
-            temperature=0.3,
+            temperature=0.0,
         )
 
         print("Received response from GPT-4o model.")

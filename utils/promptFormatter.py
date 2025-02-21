@@ -23,9 +23,15 @@ def get_extraction_prompt(content: str):
         - 'question_instruction (These instruction come after question number. It is present in ())'
         -'comparison_count -flaot- (This count will come after the Suggested answer Handing give if it is present if comparison_count not present then try  to find it form the question. if there are not present both place then all )
         -'comparison_instruction(If not presnet then send null,This count will come after the Suggested answer Handing (any 1,any 2,any 3,any one,any two,any three) if not presnet then send null)
-        - 'suggested_answer' (as an array of points)
+        - 'suggested_answer' (as an array of points, ensuring all details and explanations are fully captured, including multi-paragraph content if applicable)
         - 'case_study_context' (if applicable)
 
+        **Important:**  
+        - Ensure that the **suggested_answer** field contains the full, detailed answer.  
+        - Extract all relevant answer points, including any subpoints or explanations.  
+        - If the answer is split across multiple paragraphs or bullet points, include them all in the array.  
+        - Do not summarize or truncate answers; keep the complete answer structure.  
+        
         Example output format:
         {{
             "assessment_type": "case_study",
@@ -60,7 +66,14 @@ def get_extraction_prompt(content: str):
         - 'question_instruction (These instruction come after question number. It is present in ())'
         -'comparison_count -flaot -(This count will come after the Suggested answer Handing give if it is present if comparison_count not present then try  to find it form the question. if there are not present both place then all )'
         -'comparison_instruction(If not presnet then send null,This count will come after the Suggested answer Handing (any 1,any 2,any 3,any one,any two,any three) if not presnet then send null)
-        - 'suggested_answer' (as an array of points)
+        -'suggested_answer' (as an array of points, ensuring all details and explanations are fully captured, including multi-paragraph content if applicable)
+
+        **Important:**  
+        - Ensure that the **suggested_answer** field contains the full, detailed answer.  
+        - Extract all relevant answer points, including any subpoints or explanations.  
+        - If the answer is split across multiple paragraphs or bullet points, include them all in the array.  
+        - Do not summarize or truncate answers; keep the complete answer structure.  
+
 
         Example output format:
         {{
