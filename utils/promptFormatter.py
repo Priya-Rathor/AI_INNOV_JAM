@@ -1,10 +1,10 @@
 def get_extraction_prompt(content: str):
     """
-    Returns the exact extraction prompt for GPT processing.
-    The function maintains the original prompt without any modifications.
+    Determines the type of assessment (case study or written assessment) and returns the structured extraction prompt.
     """
 
     is_case_study = "case study" in content.lower()
+    assessment_type = "case_study" if is_case_study else "written_assessment"
 
     if is_case_study:
         return f"""
