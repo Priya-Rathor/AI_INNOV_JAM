@@ -20,7 +20,6 @@ def get_extraction_prompt(content: str):
         - 'question_instruction (These instruction come after question number. It is present in ())'
         -'comparison_count -flaot- (This count will come after the Suggested answer Handing give if it is present if comparison_count not present then try  to find it form the question. if there are not present both place then all )
         -'comparison_instruction(If not presnet then send null,This count will come after the Suggested answer Handing (any 1,any 2,any 3,any one,any two,any three) if not presnet then send null)
-        
         - 'suggested_answer' (as an array of points)
         - 'case_study_context' (if applicable)
 
