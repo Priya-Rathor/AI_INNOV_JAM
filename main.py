@@ -8,7 +8,7 @@ import uvicorn
 
 
 # ----------------------------------------------------------------
-#               FastAPI App Initialization
+#                 FastAPI App Initialization
 # ----------------------------------------------------------------
 app = FastAPI()
 
@@ -41,10 +41,8 @@ async def hello():
 
 
 
-
-
 # ----------------------------------------------------------------
 #                  Run FastAPI Server
 # ----------------------------------------------------------------
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=config.PORT)
+    uvicorn.run(app, host="0.0.0.0", port=config.PORT)
