@@ -41,4 +41,6 @@ def parse_output(output, max_marks, score_key):
     if feedback.lower() in ["no valid feedback.", "", " "]:
         feedback = "The model did not provide a detailed explanation. Please adjust the prompt."
 
+
+    print(score,feedback)
     return {score_key: min(score, max_marks), "feedback": feedback}
