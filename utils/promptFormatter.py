@@ -86,7 +86,7 @@ def get_extraction_prompt(content: str):
                     "question_number": <question_number>,
                     "question": "<full_question_text>",
                     "question_instruction": "<question_instruction>",
-                    "suggested_answer": [<answer_point_1>, <answer_point_2>, ...],
+                    "suggested_answer": [<answer_point0_1>, <answer_point_2>, ...],
                     "comparison_count": <comparison_count>,
                     "comparison_instruction": <comparison_instruction>
                 }}
