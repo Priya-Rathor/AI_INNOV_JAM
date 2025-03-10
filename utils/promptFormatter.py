@@ -18,7 +18,7 @@ def get_extraction_prompt(content: str):
         Extract the case study context only once if the document is for a case study assessment. Then extract all the questions and suggested answers, and format them as a JSON array. Each item should have the following structure:
         - 'Total Duration, Duration, time - float (Give only number, do not add any unit name with the number example:- 30, 60, 120, etc.)'
         - 'Instructions to Candidate'
-        - 'Question_number'
+        - 'Question_number'(Ensure that questions are numbered sequentially, starting from 1, and continue in order.)
         - 'Question' (Extract the complete question, including all its parts. Ensure that multi-line or multi-part questions are fully captured.)
         - 'Question_instruction' (These instructions come after the question number. If instructions are enclosed in parentheses, extract them as they are.)
         - 'Suggested_answer' (Extract all points that are present in the suggested answer as an array. Ensure that **every point from the answer is fully captured**, including subpoints, explanations, and multi-paragraph content. If an answer contains bullet points, sub-bullets, or paragraph-based reasoning, **include them all**.)
@@ -62,7 +62,7 @@ def get_extraction_prompt(content: str):
         Extract all the questions and suggested answers, and format them as a JSON array. Each item should have the following structure:
         - 'Total Duration, Duration, time - float (Give only number, do not add any unit name with the number example:- 30, 60, 120, etc.)'
         - 'Instructions to Candidate'
-        - 'Question_number'
+        - 'Question_number'(Ensure that questions are numbered sequentially, starting from 1, and continue in order.)
         - 'Question' (Extract the full question, including all its components and sub-parts.)
         - 'Question_instruction' (These instructions come after the question number and are typically enclosed in parentheses.)
         - 'Suggested_answer' (Extract **all points** from the suggested answer as an array. Ensure every answer component is captured, including subpoints, multi-paragraph content, and detailed reasoning.)
