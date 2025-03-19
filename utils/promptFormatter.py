@@ -21,8 +21,9 @@ def get_extraction_prompt(content: str):
         - 'Question_number'(Ensure that questions are numbered sequentially, starting from 1, and continue in order.)
         - 'Question' (Extract the complete question, including all its parts. Ensure that multi-line or multi-part questions are fully captured.)
         - 'Question_instruction' (These instructions come after the question number. If instructions are enclosed in parentheses, extract them as they are.)
-        - 'Suggested_answer' (Extract all points that are present in the suggested answer as an array. Ensure that **every point from the answer is fully captured**, including subpoints, explanations, and multi-paragraph content. If an answer contains bullet points, sub-bullets, or paragraph-based reasoning, **include them all**.)
-        - 'Comparison_count - float' (This count will come after the **Suggested Answer Heading** if it is present. If **Comparison_count** is not explicitly mentioned, try to find it in the **question** itself. If it is missing in both places, return null.)
+        - 'Suggested_answer_points_count' (Count the number of distinct points or headings in the suggested answer. A point is defined as a separate line or section that appears after a line break. Return the total count of such points.)
+        - 'Suggested_answer' (Extract Suggested_answer_points_count points that are present in the suggested answer as an array. Ensure that **every point from the answer is fully captured**, including subpoints, explanations, and multi-paragraph content. If an answer contains bullet points, sub-bullets, or paragraph-based reasoning, **include them all**.)
+        - 'Comparison_count - ' (This count will come after the **Suggested Answer Heading** if it is present. If **Comparison_count** is not explicitly mentioned, try to find it in the **question** itself. If it is missing in both places, return Suggested_answer_points_count.)
         - 'Comparison_instruction' (If not present, return null. This instruction will come after the **Suggested Answer Heading** (e.g., any 1, any 2, any 3, any one, any two, any three). If not found, return null.)
         - 'Case_study_context' (If applicable, extract the **entire case study context** and ensure that all necessary details are included.)
 
@@ -44,6 +45,7 @@ def get_extraction_prompt(content: str):
                     "question_number": <question_number>,
                     "question": "<full_question_text>",
                     "question_instruction": "<question_instruction>",
+                    "Suggested_answer_points_count":<Suggested_answer_points_count>,
                     "suggested_answer": [<answer_point_1>, <answer_point_2>, ...],
                     "comparison_count": <comparison_count>,
                     "comparison_instruction": <comparison_instruction>
@@ -65,8 +67,9 @@ def get_extraction_prompt(content: str):
         - 'Question_number'(Ensure that questions are numbered sequentially, starting from 1, and continue in order.)
         - 'Question' (Extract the full question, including all its components and sub-parts.)
         - 'Question_instruction' (These instructions come after the question number and are typically enclosed in parentheses.)
-        - 'Suggested_answer' (Extract **all points** from the suggested answer as an array. Ensure every answer component is captured, including subpoints, multi-paragraph content, and detailed reasoning.)
-        - 'Comparison_count - float' (If **Comparison_count** is present, extract it. If it is missing, look for it in the **question**. If it is not found in both places, return null.)
+        - 'Suggested_answer_points_count' (Count the number of distinct points or headings in the suggested answer. A point is defined as a separate line or section that appears after a line break. Return the total count of such points.)
+        - 'Suggested_answer' (Extract **all Suggested_answer_points_count** from the suggested answer as an array. Ensure every answer component is captured, including subpoints, multi-paragraph content, and detailed reasoning.)
+        - 'Comparison_count - float' (If **Comparison_count** is present, extract it. If it is missing, look for it in the **question**. If it is not found in both places, return Suggested_answer_points_count.)
         - 'Comparison_instruction' (Extract any instructions after the **Suggested Answer Heading** (e.g., any 1, any 2, any 3, any one, any two, any three). If not found, return null.)
 
         **Important:**  
@@ -85,6 +88,7 @@ def get_extraction_prompt(content: str):
                 {{
                     "question_number": <question_number>,
                     "question": "<full_question_text>",
+                    "Suggested_answer_points_count":<Suggested_answer_points_count>,
                     "question_instruction": "<question_instruction>",
                     "suggested_answer": [<answer_point0_1>, <answer_point_2>, ...],
                     "comparison_count": <comparison_count>,

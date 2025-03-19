@@ -44,3 +44,4 @@ dist/
 .env.local
 .env.production
 .env.test
+.qodo
