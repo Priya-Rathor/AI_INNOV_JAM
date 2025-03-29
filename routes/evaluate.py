@@ -91,6 +91,8 @@ async def evaluate_gpt(items: List[EvaluationRequest]):
 #-------------------------------------------------------------------------------------------------
 #                                              Check API Routes 
 #-------------------------------------------------------------------------------------------------
+
+
 @router.post("/check/gpt")
 async def check_gpt_status(request: CheckRequest):
     try:
@@ -134,6 +136,7 @@ async def check_groq_status(request:CheckRequest):
 #-------------------------------------------------------------------------------------------------
 #                                    FormatterAPI  Routes
 # -----------------------------------------------------------------------------------------------
+
 
 @router.post("/extract/")
 async def extract_data_from_text(content: str = Form(...)):
