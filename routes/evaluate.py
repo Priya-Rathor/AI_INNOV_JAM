@@ -39,9 +39,12 @@ class EvaluationRequest(BaseModel):
 
 
 
+
+
 #----------------------------------------------------------------------------------
 #                                    Model for the Check api
 #----------------------------------------------------------------------------------
+
 
 class CheckRequest(BaseModel):
     api_key: str
@@ -54,6 +57,8 @@ class CheckRequest(BaseModel):
 #                           Evaluation Routes  
 #------------------------------------------------------------------------------------
 # Route for Groq evaluation
+
+
 @router.post("/evaluate/groq")
 async def evaluate_groq(items: List[EvaluationRequest]):
     return {"results": [evaluate_with_groq(item) for item in items]} 
@@ -63,6 +68,8 @@ async def evaluate_groq(items: List[EvaluationRequest]):
 
 
 # Route for Gemini evaluation
+
+
 @router.post("/evaluate/gemini")
 async def evaluate_gemini(items: List[EvaluationRequest]):
     return {"results": [evaluate_with_gemini(item) for item in items]}  
@@ -94,6 +101,9 @@ async def check_gpt_status(request: CheckRequest):
     
 
 
+
+
+
 @router.post("/check/gemini")
 async def check_gemini_status(request:CheckRequest):
     try:
@@ -102,6 +112,9 @@ async def check_gemini_status(request:CheckRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error:{str(e)}")    
     
+
+
+
 
 
 
@@ -117,9 +130,11 @@ async def check_groq_status(request:CheckRequest):
 
 
 
+
 #-------------------------------------------------------------------------------------------------
 #                                    FormatterAPI  Routes
 # -----------------------------------------------------------------------------------------------
+
 @router.post("/extract/")
 async def extract_data_from_text(content: str = Form(...)):
     """API endpoint to process the text and extract structured data."""
@@ -132,6 +147,7 @@ async def extract_data_from_text(content: str = Form(...)):
     except Exception as e:
         return {"error": f"Error processing request: {str(e)}"}
     
+
 
 
 

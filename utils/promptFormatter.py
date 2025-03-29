@@ -6,7 +6,7 @@ def get_extraction_prompt(content: str):
     """
 
     is_case_study = bool(re.search(r'\bcase\s*study\b', content, re.IGNORECASE)) or "case study context" in content.lower()
-
+ 
     assessment_type = "case_study" if is_case_study else "written_assessment"
 
     if is_case_study:
