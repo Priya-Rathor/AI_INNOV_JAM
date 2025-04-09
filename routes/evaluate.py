@@ -56,9 +56,7 @@ class CheckRequest(BaseModel):
 #------------------------------------------------------------------------------------
 #                           Evaluation Routes  
 #------------------------------------------------------------------------------------
-# Route for Groq evaluation
-
-
+# Route for Groq evaluation 
 @router.post("/evaluate/groq")
 async def evaluate_groq(items: List[EvaluationRequest]):
     return {"results": [evaluate_with_groq(item) for item in items]} 
@@ -68,8 +66,6 @@ async def evaluate_groq(items: List[EvaluationRequest]):
 
 
 # Route for Gemini evaluation
-
-
 @router.post("/evaluate/gemini")
 async def evaluate_gemini(items: List[EvaluationRequest]):
     return {"results": [evaluate_with_gemini(item) for item in items]}  
