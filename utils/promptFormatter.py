@@ -18,7 +18,7 @@ def get_extraction_prompt(content: str):
         Extract the case study context only once if the document is for a case study assessment. Then extract all the questions and suggested answers, and format them as a JSON array. Each item should have the following structure:
         - 'Total Duration, Duration, time - float (Give only number, do not add any unit name with the number example:- 30, 60, 120, etc.)'
         - 'Instructions to Candidate'
-        - 'Question_number'(Ensure that questions are numbered sequentially, starting from 1, and continue in order.)
+        - 'Question_number'(Ensure that all question are arrange in ascending order based on question number starting  form 1)
         - 'Question' (Extract the complete question, including all its parts. Ensure that multi-line or multi-part questions are fully captured.)
         - 'Question_instruction' (These instructions come after the question number. If instructions are enclosed in parentheses, extract them as they are.)
         - 'Suggested_answer_points_count' (Count the number of distinct points or headings in the suggested answer. A point is defined as a separate line or section that appears after a line break. Return the total count of such points.)
@@ -33,6 +33,7 @@ def get_extraction_prompt(content: str):
         - If the answer is split across multiple paragraphs or structured differently, **preserve the full answer** in its original format.  
         - **Do not summarize, shorten, or rephrase the answers**; keep them as they appear in the document.  
         - If a question contains multiple parts (e.g., sub-questions or steps), extract **each part completely** and structure it appropriately.  
+        - If the Questions are not arranged in a ascending order then arranged them properly  based on Question_number.
 
         Example output format:
         {{
@@ -42,7 +43,7 @@ def get_extraction_prompt(content: str):
             "case_study_context": "<case study content>",
             "questions_and_answers": [
                 {{
-                    "question_number": <question_number>,
+                    "question_number": <Question_number>,
                     "question": "<full_question_text>",
                     "question_instruction": "<question_instruction>",
                     "Suggested_answer_points_count":<Suggested_answer_points_count>,
@@ -64,7 +65,7 @@ def get_extraction_prompt(content: str):
         Extract all the questions and suggested answers, and format them as a JSON array. Each item should have the following structure:
         - 'Total Duration, Duration, time - float (Give only number, do not add any unit name with the number example:- 30, 60, 120, etc.)'
         - 'Instructions to Candidate'
-        - 'Question_number'(Ensure that questions are numbered sequentially, starting from 1, and continue in order.)
+        - 'Question_number'(Ensure that all question are arrange in ascending order based on question number starting  form 1)
         - 'Question' (Extract the full question, including all its components and sub-parts.)
         - 'Question_instruction' (These instructions come after the question number and are typically enclosed in parentheses.)
         - 'Suggested_answer_points_count' (Count the number of distinct points or headings in the suggested answer. A point is defined as a separate line or section that appears after a line break. Return the total count of such points.)
@@ -76,7 +77,8 @@ def get_extraction_prompt(content: str):
         - The **Suggested_answer** field must contain **every** answer point.  
         - Extract all answer subpoints, detailed explanations, and multi-paragraph content without omitting any details.  
         - **Do not summarize, truncate, or modify the original answer**; keep its full structure intact.  
-        - If a question has multiple parts (e.g., step-by-step breakdowns or sub-questions), extract **each part completely** and maintain its structure.  
+        - If a question has multiple parts (e.g., step-by-step breakdowns or sub-questions), extract **each part completely** and maintain its structure. 
+        - If the Questions are not arranged in a ascending order then arranged them properly  based on Question_number. 
 
         Example output format:
         {{

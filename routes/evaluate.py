@@ -151,6 +151,7 @@ async def extract_data_from_text(content: str = Form(...)):
 
 
 
+
 @router.post("/extract/gemini")
 async def extract_data_from_text_gemini(content:str = Form(...)):
     """API endpoint to process the text and extract structured data."""
