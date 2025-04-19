@@ -9,6 +9,7 @@ def get_extraction_prompt(content: str):
  
     assessment_type = "case_study" if is_case_study else "written_assessment"
 
+
     if is_case_study:
         return f"""
         You are an assistant that extracts structured information from text. 
