@@ -2,8 +2,6 @@ Here’s a complete and professional `README.md` file tailored to your **AI\_INN
 
 ---
 
-
-```markdown
 # 🎓 AI_INNOV_JAM – LLM-based Student Answer Evaluation API
 
 **AI_INNOV_JAM** is a FastAPI backend that allows **automated evaluation of student answers** using state-of-the-art LLMs like **GPT**, **Gemini**, and **Groq**. It scores responses based on alignment with the suggested answer and gives concise one-line feedback. Useful for EdTech platforms, auto-grading, or training use cases.
