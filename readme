@@ -1,57 +1,43 @@
-Here’s a complete and professional `README.md` file tailored to your **AI\_INNOV\_JAM** project, reflecting the folder structure, APIs, and model logic you've implemented:
+# 📚 AI_INNOV_JAM - LLM-powered Student Evaluation API
+
+AI_INNOV_JAM is a powerful backend system built with **FastAPI** that uses **GPT**, **Gemini**, and **Groq** language models to evaluate student responses. It provides auto-scoring and brief feedback based on model comparison with suggested answers.
 
 ---
 
-# 🎓 AI_INNOV_JAM – LLM-based Student Answer Evaluation API
+## 🚀 Key Features
 
-**AI_INNOV_JAM** is a FastAPI backend that allows **automated evaluation of student answers** using state-of-the-art LLMs like **GPT**, **Gemini**, and **Groq**. It scores responses based on alignment with the suggested answer and gives concise one-line feedback. Useful for EdTech platforms, auto-grading, or training use cases.
-
----
-
-## 🚀 Features
-
-- 🧠 Score student answers with GPT-4, Gemini 1.5 Pro, or Groq Mixtral
-- 📊 Evaluation based on correctness, completeness, and clarity
-- 📝 Return concise feedback like:  
-  `3 - Clear answer, but missed a key point.`
-- 🔐 API key validity checks for each provider
-- 📎 Formatter API to extract Q&A from raw content using LLMs
+- 🎯 Evaluate student answers using Groq, GPT, and Gemini
+- 🧠 Dynamic prompt generation based on number of expected key points
+- 🗨️ Single-line feedback with auto score
+- 🔐 API key health check for all LLM providers
+- 📄 Extract questions and answers from raw text using LLMs
 
 ---
 
-## 📂 Folder Structure
+## 📁 Folder Structure
 
 ```
-
-AI\_INNOV\_JAM/
+AI_INNOV_JAM/
 │
-├── main.py                          # FastAPI app entry point
-├── .env                             # API keys for Groq, OpenAI, Gemini
-├── requirements.txt                 # Python dependencies
+├── main.py                  # FastAPI app entry point
+├── .env                     # API keys (OpenAI, Groq, Gemini)
+├── requirements.txt         # Python dependencies
 │
 ├── config/
-│   └── config.py                    # App/server/config management
+│   └── config.py            # Centralized config loader
 │
 ├── routes/
-│   └── evaluate.py                  # API endpoints for scoring, checking, extracting
+│   └── evaluate.py          # API routes for eval, check, extract
 │
 ├── utils/
-│   ├── promptFormatter.py          # Prompt for extracting Q\&A from raw text
-│   └── promptsEval.py              # Prompt builder for scoring
+│   ├── promptsEval.py       # Scoring prompt builder
+│   └── promptFormatter.py   # Prompt to extract Q&A
 │
 ├── models/
-│   ├── EvalModels/
-│   │   ├── groqEval.py             # Groq-based evaluation logic
-│   │   ├── gptEval.py              # GPT-based evaluation logic
-│   │   ├── geminiEval.py           # Gemini-based evaluation logic
-│   │   └── ...clients.py           # Respective API client logic
-│   ├── CheckModels/
-│   │   ├── groq.py / gpt.py / gemini.py   # API key validation logic
-│   └── FormatterModel/
-│       ├── gptFormatter.py         # GPT model Q\&A extractor
-│       └── geminiFormatter.py      # Gemini model Q\&A extractor
-
-````
+│   ├── EvalModels/          # Scoring logic for LLMs
+│   ├── CheckModels/         # API key validation logic
+│   └── FormatterModel/      # Q&A extraction logic
+```
 
 ---
 
@@ -60,19 +46,16 @@ AI\_INNOV\_JAM/
 ### ✅ Requirements
 - Python 3.11.9+
 
-### 📥 Installation
-
+### 📦 Installation
 ```bash
 git clone https://github.com/Priya-Rathor/AI_INNOV_JAM.git
 cd AI_INNOV_JAM
 pip install -r requirements.txt
-````
-
-### 🛠️ .env Configuration
-
-Create a `.env` file with your API keys:
-
 ```
+
+### 🔐 Environment Variables
+Create a `.env` file:
+```env
 OPENAI_API_KEY=your_openai_key
 GEMINI_API_KEY=your_gemini_key
 GROQ_API_KEY=your_groq_key
@@ -80,24 +63,19 @@ GROQ_API_KEY=your_groq_key
 
 ---
 
-## 🔗 API Endpoints
+## 🔗 API Overview
 
-### 1. **Evaluate Answer**
-
+### 🎯 Evaluate API
 ```http
-POST /evaluate/{provider}
+POST /evaluate/{provider}  # provider = gpt | gemini | groq
 ```
-
-* `provider` can be `gpt`, `gemini`, or `groq`
-
-**Request Body (List of answers):**
-
+**Body:**
 ```json
 [
   {
-    "question": "What is AI?",
-    "suggested_answer": "AI is the simulation of human intelligence.",
-    "student_answer": "AI means machines acting like humans.",
+    "question": "Define AI.",
+    "suggested_answer": "AI simulates human intelligence.",
+    "student_answer": "AI makes machines think.",
     "comparison_count": "1",
     "marks": 5,
     "temperature": 0.3,
@@ -106,138 +84,76 @@ POST /evaluate/{provider}
   }
 ]
 ```
-
 **Response:**
-
 ```json
-{
-  "results": [
-    {
-      "score": 4,
-      "feedback": "Accurate and concise, though a bit general."
-    }
-  ]
-}
+{"score": 4, "feedback": "Good explanation but missed one key term."}
 ```
 
 ---
 
-### 2. **Check API Key Status**
-
+### 🔍 API Key Check
 ```http
 POST /check/{provider}
 ```
-
-* Validate if your API key is working.
-
-**Body Example:**
-
+**Body:**
 ```json
-{
-  "api_key": "your_api_key",
-  "model": "gpt-4"
-}
+{ "api_key": "your-key", "model": "gpt-4" }
 ```
 
 ---
 
-### 3. **Extract Questions & Answers**
-
+### 📄 Extract Q&A from Text
 ```http
-POST /extract/
-POST /extract/gemini
+POST /extract/            # GPT
+POST /extract/gemini      # Gemini
 ```
-
-* Use GPT or Gemini to extract questions/answers from raw text.
-
-**Form-data Example:**
-
+**Form-Data:**
 ```
-content: "Chapter on Machine Learning: 1. What is ML?..."
+content = Raw paragraph text with questions and answers
 ```
-
 **Response:**
-
 ```json
-{
-  "questions": [...],
-  "answers": [...]
-}
+{"questions": [...], "answers": [...]}
 ```
 
 ---
 
-## 🧠 Prompt Logic
+## 🧠 Prompt Engine
 
-Prompts are dynamically generated from:
-
-* `promptsEval.py` for scoring logic
-* `promptFormatter.py` for Q\&A extraction
-
-Evaluation is based on:
-
-* Required number of points
-* Completeness & clarity
-* Score + 1-line feedback
+- `promptsEval.py`: Builds model prompt using question, suggested answer, answer, count & marks
+- Each LLM returns score + 1-line feedback like:
+  `3 - Good clarity, but missed one main point.`
 
 ---
 
-## 📦 Technologies Used
+## 🧪 Manual Testing
 
-* [FastAPI](https://fastapi.tiangolo.com/)
-* [OpenAI](https://platform.openai.com/)
-* [Groq](https://groq.com/)
-* [Gemini](https://ai.google.dev/)
-* [Uvicorn](https://www.uvicorn.org/)
-* Python 3.11+
-
----
-
-## 🧪 Testing (Manual)
-
-You can test endpoints using:
-
-* Postman / Thunder Client / Curl
-* Frontend clients like Streamlit, React, etc.
-
-Example:
-
+Use Postman, Curl, or Thunder Client to test endpoints:
 ```bash
 curl -X POST http://localhost:7100/evaluate/groq
 ```
 
 ---
 
-## 🙌 Author
-
-**Priya Rathor**
-🔗 GitHub: [@Priya-Rathor](https://github.com/Priya-Rathor)
-
----
-
-## 📌 Todo & Ideas
-
-* Add frontend UI for easy testing
-* Add test cases using `pytest`
-* Log response latency
-* Support more feedback tones (e.g., encouraging, strict)
+## 🙋‍♀️ Author
+**Priya Rathor**  
+🔗 [GitHub Profile](https://github.com/Priya-Rathor)
 
 ---
 
-```
+## 🧰 Tech Stack
+- FastAPI
+- OpenAI / GPT-4
+- Gemini 1.5 Pro
+- Groq Mixtral
+- Python 3.11.9
 
-Would you like this added directly to your project as a `README.md` file?
-```
+---
 
+## 📌 To-Do
+- ✅ Frontend UI for user input
+- ✅ Save evaluation reports to DB
+- ✅ Add `pytest` tests
+- ✅ Retry logic for failed LLM calls
 
-
-### env start :  ./env/scripts/activate   
-### run server LAN  :  uvicorn main:app --host 0.0.0.0 --port 7100 --reload
-### run for local :  uvicorn main:app --reload
-=======
-run server LAN  :  uvicorn main:app --host 0.0.0.0 --port 7100 --reload
-run for local :  uvicorn main:app --reload --host 127.0.0.1 --port 7100
-
-
-
-
+---
